@@ -1,0 +1,240 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "databaseAccounts_ytnobody_func_name": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "databaseAccounts_ytnobody_func_name_1": {
+            "defaultValue": "ytnobody-func",
+            "type": "String"
+        },
+        "namespaces_ytnobody_func_name": {
+            "defaultValue": "ytnobody-func",
+            "type": "String"
+        },
+        "storageAccounts_function555aff438e1d_name": {
+            "defaultValue": "function555aff438e1d",
+            "type": "String"
+        },
+        "serverfarms_JapanWestPlan_name": {
+            "defaultValue": "JapanWestPlan",
+            "type": "String"
+        },
+        "sites_ytnobody_func01_name": {
+            "defaultValue": "ytnobody-func01",
+            "type": "String"
+        },
+        "AuthorizationRules_RootManageSharedAccessKey_name": {
+            "defaultValue": "ytnobody-func/RootManageSharedAccessKey",
+            "type": "String"
+        },
+        "eventhubs_myhub_name": {
+            "defaultValue": "ytnobody-func/myhub",
+            "type": "String"
+        },
+        "authorizationRules_full_name": {
+            "defaultValue": "ytnobody-func/myhub/full",
+            "type": "String"
+        },
+        "consumergroups_$Default_name": {
+            "defaultValue": "ytnobody-func/myhub/$Default",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourceGroups/myfunc/providers/Microsoft.DocumentDB/databaseAccounts/ytnobody-func' から一般化されました。",
+            "type": "Microsoft.DocumentDB/databaseAccounts",
+            "kind": "MongoDB",
+            "name": "[parameters('databaseAccounts_ytnobody_func_name_1')]",
+            "apiVersion": "2015-04-08",
+            "location": "Japan West",
+            "tags": {},
+            "properties": {
+                "databaseAccountOfferType": "Standard",
+                "consistencyPolicy": {
+                    "defaultConsistencyLevel": "Session",
+                    "maxIntervalInSeconds": 5,
+                    "maxStalenessPrefix": 100
+                },
+                "name": "[parameters('databaseAccounts_ytnobody_func_name')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourcegroups/myfunc/providers/Microsoft.EventHub/namespaces/ytnobody-func' から一般化されました。",
+            "type": "Microsoft.EventHub/namespaces",
+            "sku": {
+                "name": "Basic",
+                "tier": "Basic"
+            },
+            "kind": "EventHub",
+            "name": "[parameters('namespaces_ytnobody_func_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan West",
+            "tags": {},
+            "properties": {
+                "provisioningState": "Succeeded",
+                "status": "Active",
+                "createdAt": "2017-02-18T01:15:29.12Z",
+                "serviceBusEndpoint": "[concat('https://', parameters('namespaces_ytnobody_func_name'),'.servicebus.windows.net:443/')]",
+                "enabled": true,
+                "updatedAt": "2017-02-18T01:15:53.73Z"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourceGroups/myfunc/providers/Microsoft.Storage/storageAccounts/function555aff438e1d' から一般化されました。",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_function555aff438e1d_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "japanwest",
+            "tags": {},
+            "properties": {},
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourceGroups/myfunc/providers/Microsoft.Web/serverfarms/JapanWestPlan' から一般化されました。",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic",
+                "size": "Y1",
+                "family": "Y",
+                "capacity": 0
+            },
+            "kind": "functionapp",
+            "name": "[parameters('serverfarms_JapanWestPlan_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan West",
+            "properties": {
+                "name": "[parameters('serverfarms_JapanWestPlan_name')]",
+                "numberOfWorkers": 0
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourceGroups/myfunc/providers/Microsoft.Web/sites/ytnobody-func01' から一般化されました。",
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[parameters('sites_ytnobody_func01_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan West",
+            "properties": {
+                "name": "[parameters('sites_ytnobody_func01_name')]",
+                "hostNames": [
+                    "ytnobody-func01.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "ytnobody-func01.azurewebsites.net",
+                    "ytnobody-func01.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_ytnobody_func01_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_ytnobody_func01_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_JapanWestPlan_name'))]"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_JapanWestPlan_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourcegroups/myfunc/providers/Microsoft.EventHub/namespaces/ytnobody-func/AuthorizationRules/RootManageSharedAccessKey' から一般化されました。",
+            "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
+            "name": "[parameters('AuthorizationRules_RootManageSharedAccessKey_name')]",
+            "apiVersion": "2015-08-01",
+            "properties": {
+                "rights": [
+                    "Listen",
+                    "Manage",
+                    "Send"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_ytnobody_func_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourcegroups/myfunc/providers/Microsoft.EventHub/namespaces/ytnobody-func/eventhubs/myhub' から一般化されました。",
+            "type": "Microsoft.EventHub/namespaces/eventhubs",
+            "name": "[parameters('eventhubs_myhub_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan West",
+            "properties": {
+                "messageRetentionInDays": 1,
+                "status": "Active",
+                "createdAt": "2017-02-18T01:16:53.93",
+                "updatedAt": "2017-02-18T01:19:17.853",
+                "partitionCount": 2,
+                "partitionIds": [
+                    "0",
+                    "1"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_ytnobody_func_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourcegroups/myfunc/providers/Microsoft.EventHub/namespaces/ytnobody-func/eventhubs/myhub/authorizationRules/full' から一般化されました。",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/authorizationRules",
+            "name": "[parameters('authorizationRules_full_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan West",
+            "properties": {
+                "rights": [
+                    "Manage",
+                    "Send",
+                    "Listen"
+                ]
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_ytnobody_func_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_myhub_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/82b7b850-06da-4390-a347-bc3fd0f2ae4a/resourcegroups/myfunc/providers/Microsoft.EventHub/namespaces/ytnobody-func/eventhubs/myhub/consumergroups/$Default' から一般化されました。",
+            "type": "Microsoft.EventHub/namespaces/eventhubs/consumergroups",
+            "name": "[parameters('consumergroups_$Default_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "Japan West",
+            "properties": {
+                "createdAt": "2017-02-18T01:16:57.5306976",
+                "updatedAt": "2017-02-18T01:16:57.593211"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.EventHub/namespaces', parameters('namespaces_ytnobody_func_name'))]",
+                "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventhubs_myhub_name'))]"
+            ]
+        }
+    ]
+}
